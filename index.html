@@ -7,13 +7,13 @@
     
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@700&family=Lora:ital,wght@0,400;0,700;1,400&family=Inter:wght@300;400;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Permanent+Marker&display=swap" rel="stylesheet">
     
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
 
     <style>
         :root {
-            --carbon: #1a1a1a;
+            --carbon: #000000; /* Negro absoluto */
             --ocre: #c59400;
             --ocre-light: #e6b014;
             --papel: #f4f1ea;
@@ -28,7 +28,7 @@
 
         body {
             background-color: var(--papel);
-            color: var(--carbon);
+            color: #1a1a1a;
             font-family: var(--font-main);
             line-height: 1.6;
             overflow-x: hidden;
@@ -70,61 +70,75 @@
 
         .nav-links a:hover { color: var(--ocre); }
 
-      
-       /* HERO SECTION - LOGO AGRANDADO Y CORREGIDO */
-.hero {
-    height: 90vh; 
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    text-align: center;
-    background: var(--carbon); /* Fondo oscuro #1a1a1a */
-    padding: 0 20px;
-    margin-top: 60px;
-    /* Esto crea el corte diagonal abajo */
-    clip-path: polygon(0 0, 100% 0, 100% 92%, 0 100%); 
-}
-
-.hero-content {
-    width: 100%;
-    max-width: 900px; /* Tamaño imponente */
-    display: flex;
-    justify-content: center;
-    align-items: center;
-}
-
-.hero-logo {
-    width: 100%;
-    height: auto;
-    max-height: 70vh;
-    object-fit: contain;
-    /* ELIMINAMOS EL FILTER PARA QUE SE VEA TU IMAGEN REAL */
-    transition: transform 0.5s ease;
-}
-
-        /* SECCIÓN MANIFIESTO */
-        .manifesto {
-            padding: 120px 20px;
-            max-width: 850px;
-            margin: 0 auto;
-        }
-
-        .manifesto h2 {
-            font-family: var(--font-titles);
-            font-size: 2.8rem;
-            margin-bottom: 40px;
+        /* HERO SECTION - LOGO AGRANDADO Y FONDO NEGRO */
+        .hero {
+            height: 90vh; 
+            display: flex;
+            align-items: center;
+            justify-content: center;
             text-align: center;
-            border-bottom: 6px solid var(--ocre);
-            display: inline-block;
-            width: 100%;
+            background: #000000; 
+            padding: 0 20px;
+            margin-top: 60px;
+            clip-path: polygon(0 0, 100% 0, 100% 92%, 0 100%);
+            position: relative;
         }
 
-        .manifesto p {
-            font-family: var(--font-book);
-            font-size: 1.3rem;
-            margin-bottom: 25px;
-            text-align: justify;
+        .hero-content {
+            width: 100%;
+            max-width: 950px; 
+            display: flex;
+            justify-content: center;
+            align-items: center;
         }
+
+        .hero-logo {
+            width: 100%;
+            height: auto;
+            max-height: 80vh; 
+            object-fit: contain;
+            filter: none; /* Quitamos filtros para ver el logo real */
+            transition: transform 0.5s ease;
+        }
+
+      /* VARIABLES ACTUALIZADAS */
+:root {
+    /* ... tus otras variables ... */
+    --font-urban: 'Permanent Marker', cursive; /* Nueva fuente rapera */
+}
+
+/* SECCIÓN MANIFIESTO */
+.manifesto {
+    padding: 120px 20px;
+    max-width: 900px; /* Un poco más ancho para la nueva fuente */
+    margin: 0 auto;
+}
+
+.manifesto h2 {
+    font-family: var(--font-urban); /* Aplicamos la fuente de pincel */
+    font-size: 4rem; /* Más grande para que destaque el estilo graffiti */
+    line-height: 1.1;
+    margin-bottom: 40px;
+    text-align: center;
+    color: var(--carbon);
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    /* Efecto sutil de stencil/pintura */
+    text-shadow: 3px 3px 0px var(--ocre); 
+    border-bottom: 8px solid var(--ocre);
+    display: block;
+    width: 100%;
+    padding-bottom: 10px;
+}
+
+.manifesto p {
+    font-family: var(--font-book);
+    font-size: 1.4rem; /* Aumentado sutilmente para balancear el peso del h2 */
+    line-height: 1.7;
+    margin-bottom: 25px;
+    text-align: justify;
+    color: #333;
+}
 
         /* CATÁLOGO */
         .catalogo {
@@ -132,13 +146,22 @@
             background: var(--gris-suave);
         }
 
-        .section-title {
-            text-align: center;
-            font-family: var(--font-titles);
-            font-size: 3rem;
-            margin-bottom: 70px;
-            color: var(--carbon);
-        }
+       .section-title {
+    text-align: center;
+    font-family: var(--font-urban); /* Fuente rapera */
+    font-size: 4.5rem;
+    margin-bottom: 70px;
+    color: var(--carbon);
+    text-transform: uppercase;
+}
+
+.book-info h3 {
+    font-family: var(--font-urban); /* Títulos de libros con estilo pincel */
+    font-size: 1.5rem;
+    margin-bottom: 12px;
+    min-height: 3em;
+    line-height: 1.2;
+}
 
         .book-grid {
             max-width: 1200px;
@@ -159,24 +182,24 @@
             visibility: hidden;
         }
 
-        /* --- EFECTOS INICIALES (FUERA DE PANTALLA) --- */
+        /* EFECTOS INICIALES */
         .reveal-up { transform: translateY(80px); }
         .reveal-left { transform: translateX(-100px); }
         .reveal-zoom { transform: scale(0.6); }
         .reveal-right { transform: translateX(100px); }
         .reveal-rotate { transform: rotate(-8deg) translateY(80px); }
 
-        /* ESTADO ACTIVO (DENTRO DE PANTALLA) */
-        .book-card.active {
+        /* ESTADO ACTIVO (Aparece) */
+        .book-card.active, .cta-box.active {
             opacity: 1;
             visibility: visible;
-            transform: translate(0) scale(1) rotate(0);
+            transform: translate(0) scale(1) rotate(0) !important;
         }
 
         .book-card:hover {
             transform: translateY(-15px) !important;
             box-shadow: 0 25px 50px rgba(0,0,0,0.15);
-            border-bottom-color: var(--carbon);
+            border-bottom-color: var(--ocre-light);
         }
 
         .book-img {
@@ -215,28 +238,35 @@
             transition: 0.3s;
         }
 
-        .btn-read:hover { background: var(--ocre); color: var(--carbon); }
+        .btn-read:hover { background: var(--ocre); color: white; }
 
-        /* ACADEMIA & PROPUESTAS */
+        /* SECCIÓN CTA (ACADEMIA & PROPUESTAS) */
         .cta-section {
-            padding: 120px 20px;
+            padding: 100px 20px;
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
-            gap: 30px;
+            gap: 0;
             max-width: 1200px;
             margin: 0 auto;
         }
 
         .cta-box {
-            padding: 70px;
+            padding: 80px 40px;
             text-align: center;
-            border-radius: 4px;
+            transition: var(--transicion-lenta);
+            opacity: 0;
+            visibility: hidden;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
         }
 
-        .box-academia { background: var(--ocre); color: var(--carbon); }
-        .box-propuestas { background: var(--carbon); color: var(--papel); }
+        .box-academia { background: var(--ocre); color: #000000; transform: translateX(-100px); }
+        .box-propuestas { background: #000000; color: var(--papel); transform: translateX(100px); }
 
-        .cta-box h3 { font-family: var(--font-titles); font-size: 2.2rem; margin-bottom: 25px; }
+        .cta-box h3 { font-family: var(--font-titles); font-size: 2.2rem; margin-bottom: 20px; }
+        .cta-box p { font-size: 1.1rem; max-width: 400px; margin-bottom: 35px; }
 
         .btn-cta {
             padding: 18px 35px;
@@ -248,16 +278,19 @@
             transition: 0.3s;
         }
 
-        .btn-cta:hover { background: var(--papel); color: var(--carbon); border-color: var(--papel); }
+        .btn-cta:hover { background: var(--papel); color: #000; border-color: var(--papel); }
 
+        /* FOOTER */
         footer {
-            background: var(--carbon);
+            background: #000000; 
             color: var(--gris-suave);
             padding: 80px 20px;
             text-align: center;
         }
 
-        .footer-logo img { height: 100px; margin-bottom: 30px; filter: brightness(0) invert(1); }
+        .footer-logo img { height: 100px; margin-bottom: 30px; transition: 0.3s; }
+        .footer-logo img:hover { transform: scale(1.05); }
+
     </style>
 </head>
 <body>
@@ -346,6 +379,7 @@
             <p>Accedé a nuestras investigaciones y textos teóricos en Academia.edu.</p>
             <a href="https://independent.academia.edu/HaciendoRap" target="_blank" class="btn-cta">Ver Repositorio</a>
         </div>
+
         <div class="cta-box box-propuestas" id="propuestas">
             <h3>Recibimos Propuestas</h3>
             <p>¿Tenés un proyecto que encaje con nuestra línea editorial? Queremos leerte.</p>
@@ -361,29 +395,27 @@
     </footer>
 
     <script>
-        // Función de animación constante (Entra y sale según el scroll)
         function handleScroll() {
-            const items = document.querySelectorAll(".book-card");
+            // Seleccionamos tanto los libros como las cajas inferiores
+            const animatables = document.querySelectorAll(".book-card, .cta-box");
             const windowHeight = window.innerHeight;
-            const triggerPoint = 100; // Sensibilidad del efecto
+            const triggerPoint = 100;
 
-            items.forEach((item) => {
+            animatables.forEach((item) => {
                 const elementTop = item.getBoundingClientRect().top;
                 const elementBottom = item.getBoundingClientRect().bottom;
 
-                // Si el elemento está dentro del área visible de la pantalla
+                // Animación constante: Aparece al entrar, desaparece al salir
                 if (elementTop < windowHeight - triggerPoint && elementBottom > triggerPoint) {
                     item.classList.add("active");
                 } else {
-                    // Si el elemento sale de la pantalla (hacia arriba o abajo), quita la clase
                     item.classList.remove("active");
                 }
             });
         }
 
-        // Eventos para el scroll y carga inicial
         window.addEventListener("scroll", handleScroll);
         window.addEventListener("load", handleScroll);
     </script>
 </body>
-</html> 
+</html>
