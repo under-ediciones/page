@@ -12,20 +12,18 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
 
     <style>
-        /* VARIABLES DE COLOR - Nueva combinación: Ocre, Carbón y Crema */
         :root {
-            --carbon: #1a1a1a;       /* El color de la tinta */
-            --ocre: #c59400;         /* El color de la identidad y el barrio */
+            --carbon: #1a1a1a;
+            --ocre: #c59400;
             --ocre-light: #e6b014;
-            --papel: #f4f1ea;        /* El color de las páginas de un libro */
+            --papel: #f4f1ea;
             --gris-suave: #e2e2e2;
             --font-main: 'Inter', sans-serif;
             --font-titles: 'Space Grotesk', sans-serif;
             --font-book: 'Lora', serif;
-            --transicion: all 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
+            --transicion-lenta: all 0.8s cubic-bezier(0.25, 1, 0.5, 1);
         }
 
-        /* RESET */
         * { margin: 0; padding: 0; box-sizing: border-box; scroll-behavior: smooth; }
 
         body {
@@ -57,8 +55,7 @@
             padding: 0 20px;
         }
 
-        .nav-logo img { height: 60px; transition: var(--transicion); }
-        .nav-logo img:hover { transform: scale(1.05); }
+        .nav-logo img { height: 60px; transition: 0.3s; }
 
         .nav-links { list-style: none; display: flex; gap: 30px; }
         .nav-links a {
@@ -73,7 +70,7 @@
 
         .nav-links a:hover { color: var(--ocre); }
 
-        /* HERO SECTION - Logo como banner principal sin textos */
+        /* HERO SECTION */
         .hero {
             height: 85vh;
             display: flex;
@@ -94,7 +91,15 @@
             align-items: center;
         }
 
-       
+        .hero-logo {
+            width: 100%;
+            height: auto;
+            max-height: 50vh;
+            object-fit: contain;
+            /* Si tu logo ya es blanco sobre negro, quita el filter de abajo */
+            filter: brightness(0) invert(1); 
+        }
+
         /* SECCIÓN MANIFIESTO */
         .manifesto {
             padding: 100px 20px;
@@ -145,14 +150,40 @@
             background: var(--papel);
             padding: 20px;
             border-bottom: 6px solid var(--ocre);
-            transition: var(--transicion);
             display: flex;
             flex-direction: column;
+            transition: var(--transicion-lenta);
+            opacity: 0; /* Oculto por defecto */
         }
 
+        /* --- EFECTOS INDIVIDUALES DE APARICIÓN --- */
+
+        /* Libro 1: Aparece desde abajo (Normal) */
+        .reveal-up { transform: translateY(50px); }
+        
+        /* Libro 2: Aparece desde la izquierda */
+        .reveal-left { transform: translateX(-80px); }
+        
+        /* Libro 3: Aparece con Zoom */
+        .reveal-zoom { transform: scale(0.7); }
+        
+        /* Libro 4: Aparece desde la derecha */
+        .reveal-right { transform: translateX(80px); }
+        
+        /* Libro 5: Aparece con una ligera rotación */
+        .reveal-rotate { transform: rotate(-5deg) translateY(50px); }
+
+        /* ESTADO ACTIVO (Cuando el JS detecta el scroll) */
+        .book-card.active {
+            opacity: 1;
+            transform: translate(0) scale(1) rotate(0);
+        }
+
+        /* Efecto Hover (Posterior a la animación de entrada) */
         .book-card:hover {
-            transform: translateY(-10px);
+            transform: translateY(-15px) !important;
             box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+            border-bottom-color: var(--carbon);
         }
 
         .book-img {
@@ -187,7 +218,7 @@
             font-weight: 700;
             text-transform: uppercase;
             font-size: 0.8rem;
-            transition: var(--transicion);
+            transition: 0.3s;
         }
 
         .btn-read:hover { background: var(--ocre); color: var(--carbon); }
@@ -205,14 +236,13 @@
         .cta-box {
             padding: 60px;
             text-align: center;
-            transition: var(--transicion);
+            transition: 0.4s;
         }
 
         .box-academia { background: var(--ocre); color: var(--carbon); }
         .box-propuestas { background: var(--carbon); color: var(--papel); }
 
         .cta-box h3 { font-family: var(--font-titles); font-size: 2rem; margin-bottom: 20px; }
-        .cta-box p { margin-bottom: 30px; }
 
         .btn-cta {
             padding: 15px 30px;
@@ -220,13 +250,12 @@
             font-weight: 700;
             text-transform: uppercase;
             border: 2px solid currentColor;
-            transition: var(--transicion);
             display: inline-block;
+            transition: 0.3s;
         }
 
         .btn-cta:hover { background: var(--papel); color: var(--carbon); border-color: var(--papel); }
 
-        /* FOOTER */
         footer {
             background: var(--carbon);
             color: var(--gris-suave);
@@ -235,19 +264,6 @@
         }
 
         .footer-logo img { height: 80px; margin-bottom: 20px; filter: grayscale(1) brightness(2); }
-
-        /* ANIMACIONES JS */
-        .reveal {
-            opacity: 0;
-            transform: translateY(30px);
-            transition: all 0.8s ease-out;
-        }
-
-        .reveal.active {
-            opacity: 1;
-            transform: translateY(0);
-        }
-
     </style>
 </head>
 <body>
@@ -266,79 +282,77 @@
         </div>
     </nav>
 
-    <!-- Banner con el logo como elemento central único -->
     <section class="hero">
-    <div class="hero-content">
-        <img src="logos/blanco-fondo-negro.png" alt="UNDER Ediciones" class="hero-logo">
-    </div>
-</section>
+        <div class="hero-content">
+            <img src="logos/blanco-fondo-negro.png" alt="UNDER Ediciones" class="hero-logo">
+        </div>
+    </section>
 
-    <section class="manifesto reveal" id="nosotros">
+    <section class="manifesto" id="nosotros">
         <h2>Nuestro Manifiesto</h2>
         <p>UNDER Ediciones es una editorial independiente nacida en La Matanza, corazón del Conurbano Oeste bonaerense. Surge de la convicción de que las experiencias, saberes, historias y producciones culturales que nacen en los barrios merecen ser documentadas y preservadas.</p>
         <p>Nuestro catálogo está dedicado a activistas, músicos, gestores culturales e investigadores del hip-hop y las músicas urbanas. Creemos que estos movimientos han generado un patrimonio cultural invaluable que debe trascender los escenarios para encontrar un lugar en los libros.</p>
     </section>
 
     <section class="catalogo" id="libros">
-    <h2 class="section-title reveal">Catálogo Actual</h2>
-    <div class="book-grid">
-        
-        <article class="book-card reveal">
-            <img src="Tapas/Tapa-disortografia.png" alt="Disortografía" class="book-img">
-            <div class="book-info">
-                <h3>Disortografía</h3>
-                <span>Pablo Martín Ríos</span>
-                <a href="#" class="btn-read">Leer Edición Digital</a>
-            </div>
-        </article>
+        <h2 class="section-title">Catálogo Actual</h2>
+        <div class="book-grid">
+            
+            <article class="book-card reveal-up">
+                <img src="Tapas/Tapa-disortografia.png" alt="Disortografía" class="book-img">
+                <div class="book-info">
+                    <h3>Disortografía</h3>
+                    <span>Pablo Martín Ríos</span>
+                    <a href="#" class="btn-read">Leer Edición Digital</a>
+                </div>
+            </article>
 
-        <article class="book-card reveal">
-            <img src="Tapas/tapa del conurbano.png" alt="Del Conurbano al Mundo" class="book-img">
-            <div class="book-info">
-                <h3>Del Conurbano al Mundo: Manual de Autogestión</h3>
-                <span>Darío Luis Candellero</span>
-                <a href="#" class="btn-read">Leer Edición Digital</a>
-            </div>
-        </article>
+            <article class="book-card reveal-left">
+                <img src="Tapas/tapa del conurbano.png" alt="Del Conurbano al Mundo" class="book-img">
+                <div class="book-info">
+                    <h3>Del Conurbano al Mundo</h3>
+                    <span>Darío Luis Candellero</span>
+                    <a href="#" class="btn-read">Leer Edición Digital</a>
+                </div>
+            </article>
 
-        <article class="book-card reveal">
-            <img src="Tapas/tapa-detras-de-camara.png" alt="Detrás de Cámara" class="book-img">
-            <div class="book-info">
-                <h3>Detrás de Cámara</h3>
-                <span>Ezequiel D. Contreras (Gallo Mc)</span>
-                <a href="#" class="btn-read">Leer Edición Digital</a>
-            </div>
-        </article>
+            <article class="book-card reveal-zoom">
+                <img src="Tapas/tapa-detras-de-camara.png" alt="Detrás de Cámara" class="book-img">
+                <div class="book-info">
+                    <h3>Detrás de Cámara</h3>
+                    <span>Ezequiel D. Contreras</span>
+                    <a href="#" class="btn-read">Leer Edición Digital</a>
+                </div>
+            </article>
 
-        <article class="book-card reveal">
-            <img src="Tapas/tapa-la-matanza-nacional.png" alt="La Matanza Nacional" class="book-img">
-            <div class="book-info">
-                <h3>La Matanza, Nacional de Pinta Ruido</h3>
-                <span>Pinta Ruido</span>
-                <a href="#" class="btn-read">Leer Edición Digital</a>
-            </div>
-        </article>
+            <article class="book-card reveal-right">
+                <img src="Tapas/tapa-la-matanza-nacional.png" alt="La Matanza Nacional" class="book-img">
+                <div class="book-info">
+                    <h3>La Matanza, Nacional</h3>
+                    <span>Pinta Ruido</span>
+                    <a href="#" class="btn-read">Leer Edición Digital</a>
+                </div>
+            </article>
 
-        <article class="book-card reveal">
-            <img src="Tapas
-/tapa-el-codigo-de-la-resiliencia.jpeg" alt="Código de Resiliencia" class="book-img">
-            <div class="book-info">
-                <h3>Código de Resiliencia</h3>
-                <span>Lucale</span>
-                <a href="#" class="btn-read">Leer Edición Digital</a>
-            </div>
-        </article>
+            <article class="book-card reveal-rotate">
+                <img src="Tapas/tapa-el-codigo-de-la-resiliencia.jpeg" alt="Código de Resiliencia" class="book-img">
+                <div class="book-info">
+                    <h3>Código de Resiliencia</h3>
+                    <span>Lucale</span>
+                    <a href="#" class="btn-read">Leer Edición Digital</a>
+                </div>
+            </article>
 
-    </div>
-</section>
+        </div>
+    </section>
 
     <section class="cta-section">
-        <div class="cta-box box-academia reveal" id="academia">
+        <div class="cta-box box-academia" id="academia">
             <h3>Repositorio Académico</h3>
             <p>Accedé a nuestras investigaciones y textos teóricos en Academia.edu.</p>
             <a href="https://independent.academia.edu/HaciendoRap" target="_blank" class="btn-cta">Ver Repositorio</a>
         </div>
-        <div class="cta-box box-propuestas reveal" id="propuestas">
+        <div class="cta-box box-propuestas" id="propuestas">
             <h3>Recibimos Propuestas</h3>
             <p>¿Tenés un proyecto que encaje con nuestra línea editorial? Queremos leerte.</p>
             <a href="https://docs.google.com/forms/d/e/1FAIpQLSdidTzoGuTRRoqhXzSPSLGatGL5h-HIM8uYzUywz5XdX0UCZA/viewform" target="_blank" class="btn-cta">Enviar Manuscrito</a>
@@ -350,27 +364,30 @@
             <img src="logos/blanco-fondo-negro.png" alt="UNDER Ediciones">
         </div>
         <p>UNDER Ediciones Independientes - La Matanza, Conurbano Oeste.</p>
-        <p style="margin-top: 10px; font-size: 0.8rem; opacity: 0.6;">Todos los libros son de distribución digital y gratuita.</p>
     </footer>
 
     <script>
-        // Lógica para revelar elementos al hacer scroll
+        // Función de revelado con retraso secuencial (Stagger)
         function reveal() {
-            var reveals = document.querySelectorAll(".reveal");
-            for (var i = 0; i < reveals.length; i++) {
-                var windowHeight = window.innerHeight;
-                var elementTop = reveals[i].getBoundingClientRect().top;
-                var elementVisible = 150;
+            const items = document.querySelectorAll(".book-card");
+            const windowHeight = window.innerHeight;
+            const elementVisible = 100;
+
+            items.forEach((item, index) => {
+                const elementTop = item.getBoundingClientRect().top;
+
                 if (elementTop < windowHeight - elementVisible) {
-                    reveals[i].classList.add("active");
+                    // Añadimos un pequeño retraso basado en su posición para que aparezcan de a uno
+                    setTimeout(() => {
+                        item.classList.add("active");
+                    }, index * 150); // 150ms de diferencia entre cada uno
                 }
-            }
+            });
         }
 
         window.addEventListener("scroll", reveal);
-
-        // Ejecutar una vez al cargar para mostrar lo que ya está en pantalla
-        reveal();
+        // Ejecutar al cargar para los que ya están visibles
+        window.addEventListener("load", reveal);
     </script>
 </body>
 </html>
