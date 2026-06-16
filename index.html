@@ -70,35 +70,37 @@
 
         .nav-links a:hover { color: var(--ocre); }
 
-        /* HERO SECTION - LOGO AGRANDADO */
-        .hero {
-            height: 90vh; /* Un poco más alto para mayor impacto */
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            text-align: center;
-            background: var(--carbon);
-            padding: 0 20px;
-            margin-top: 60px;
-            clip-path: polygon(0 0, 100% 0, 100% 92%, 0 100%);
-        }
+      
+       /* HERO SECTION - LOGO AGRANDADO Y CORREGIDO */
+.hero {
+    height: 90vh; 
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    background: var(--carbon); /* Fondo oscuro #1a1a1a */
+    padding: 0 20px;
+    margin-top: 60px;
+    /* Esto crea el corte diagonal abajo */
+    clip-path: polygon(0 0, 100% 0, 100% 92%, 0 100%); 
+}
 
-        .hero-content {
-            width: 100%;
-            max-width: 850px; /* Logo más grande y legible */
-            display: flex;
-            justify-content: center;
-            align-items: center;
-        }
+.hero-content {
+    width: 100%;
+    max-width: 900px; /* Tamaño imponente */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
 
-        .hero-logo {
-            width: 100%;
-            height: auto;
-            max-height: 75vh; /* Aumentado para que ocupe más pantalla */
-            object-fit: contain;
-            filter: brightness(0) invert(1); /* Logo blanco puro sobre negro */
-            transition: transform 0.5s ease;
-        }
+.hero-logo {
+    width: 100%;
+    height: auto;
+    max-height: 70vh;
+    object-fit: contain;
+    /* ELIMINAMOS EL FILTER PARA QUE SE VEA TU IMAGEN REAL */
+    transition: transform 0.5s ease;
+}
 
         /* SECCIÓN MANIFIESTO */
         .manifesto {
