@@ -12,6 +12,14 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
 
     <style>
+        /* REGISTRO DE FUENTE LOCAL URBANA DESDE TU CARPETA FONTS */
+        @font-face {
+            font-family: 'Freedom Street';
+            src: url('fonts/freedom-street.otf') format('opentype');
+            font-weight: normal;
+            font-style: normal;
+        }
+
         :root {
             --carbon: #000000; /* Negro absoluto */
             --ocre: #c59400;
@@ -21,6 +29,10 @@
             --font-main: 'Inter', sans-serif;
             --font-titles: 'Space Grotesk', sans-serif;
             --font-book: 'Lora', serif;
+            
+            /* FUENTE GRAFFITI ASIGNADA A FREEDOM STREET */
+            --font-graffiti: 'Freedom Street', sans-serif;
+            
             --transicion-lenta: all 0.9s cubic-bezier(0.23, 1, 0.32, 1);
         }
 
@@ -101,44 +113,38 @@
             transition: transform 0.5s ease;
         }
 
-      /* VARIABLES ACTUALIZADAS */
-:root {
-    /* ... tus otras variables ... */
-    --font-urban: 'Permanent Marker', cursive; /* Nueva fuente rapera */
-}
+        /* SECCIÓN MANIFIESTO */
+        .manifesto {
+            padding: 120px 20px;
+            max-width: 900px; /* Un poco más ancho para la nueva fuente */
+            margin: 0 auto;
+        }
 
-/* SECCIÓN MANIFIESTO */
-.manifesto {
-    padding: 120px 20px;
-    max-width: 900px; /* Un poco más ancho para la nueva fuente */
-    margin: 0 auto;
-}
+        .manifesto h2 {
+            font-family: var(--font-graffiti); /* Aplicamos la fuente local Freedom Street */
+            font-size: 4.5rem; /* Adaptado al tamaño imponente de esta tipografía */
+            line-height: 1;
+            margin-bottom: 40px;
+            text-align: center;
+            color: var(--carbon);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            /* Efecto de relieve urbano */
+            text-shadow: 3px 3px 0px var(--ocre); 
+            border-bottom: 8px solid var(--ocre);
+            display: block;
+            width: 100%;
+            padding-bottom: 15px;
+        }
 
-.manifesto h2 {
-    font-family: var(--font-urban); /* Aplicamos la fuente de pincel */
-    font-size: 4rem; /* Más grande para que destaque el estilo graffiti */
-    line-height: 1.1;
-    margin-bottom: 40px;
-    text-align: center;
-    color: var(--carbon);
-    text-transform: uppercase;
-    letter-spacing: 2px;
-    /* Efecto sutil de stencil/pintura */
-    text-shadow: 3px 3px 0px var(--ocre); 
-    border-bottom: 8px solid var(--ocre);
-    display: block;
-    width: 100%;
-    padding-bottom: 10px;
-}
-
-.manifesto p {
-    font-family: var(--font-book);
-    font-size: 1.4rem; /* Aumentado sutilmente para balancear el peso del h2 */
-    line-height: 1.7;
-    margin-bottom: 25px;
-    text-align: justify;
-    color: #333;
-}
+        .manifesto p {
+            font-family: var(--font-book);
+            font-size: 1.4rem; /* Aumentado sutilmente para balancear el peso del h2 */
+            line-height: 1.7;
+            margin-bottom: 25px;
+            text-align: justify;
+            color: #1a1a1a;
+        }
 
         /* CATÁLOGO */
         .catalogo {
@@ -146,22 +152,15 @@
             background: var(--gris-suave);
         }
 
-       .section-title {
-    text-align: center;
-    font-family: var(--font-urban); /* Fuente rapera */
-    font-size: 4.5rem;
-    margin-bottom: 70px;
-    color: var(--carbon);
-    text-transform: uppercase;
-}
-
-.book-info h3 {
-    font-family: var(--font-urban); /* Títulos de libros con estilo pincel */
-    font-size: 1.5rem;
-    margin-bottom: 12px;
-    min-height: 3em;
-    line-height: 1.2;
-}
+        .section-title {
+            text-align: center;
+            font-family: var(--font-graffiti); /* Fuente urbana rapera */
+            font-size: 4.5rem;
+            margin-bottom: 70px;
+            color: var(--carbon);
+            text-transform: uppercase;
+            text-shadow: 3px 3px 0px var(--ocre);
+        }
 
         .book-grid {
             max-width: 1200px;
@@ -211,10 +210,11 @@
         }
 
         .book-info h3 {
-            font-family: var(--font-titles);
-            font-size: 1.3rem;
+            font-family: var(--font-graffiti); /* Títulos de libros en estilo graffiti */
+            font-size: 1.8rem;
             margin-bottom: 12px;
-            min-height: 3em;
+            min-height: 2.5em;
+            line-height: 1.1;
         }
 
         .book-info span {
@@ -265,7 +265,11 @@
         .box-academia { background: var(--ocre); color: #000000; transform: translateX(-100px); }
         .box-propuestas { background: #000000; color: var(--papel); transform: translateX(100px); }
 
-        .cta-box h3 { font-family: var(--font-titles); font-size: 2.2rem; margin-bottom: 20px; }
+        .cta-box h3 { 
+            font-family: var(--font-graffiti); /* Títulos de bloques inferiores con la misma fuente urbana */
+            font-size: 2.5rem; 
+            margin-bottom: 20px; 
+        }
         .cta-box p { font-size: 1.1rem; max-width: 400px; margin-bottom: 35px; }
 
         .btn-cta {
@@ -317,7 +321,7 @@
 
     <section class="manifesto" id="nosotros">
         <h2>Nuestro Manifiesto</h2>
-        <p>UNDER Ediciones es una editorial independiente nacida en La Matanza, corazón del Conurbano Oeste bonaerense. Surge de la convicción de que las experiencias, saberes, historias y producciones culturales que nacen en los barrios merecen ser documentadas y preservadas.</p>
+        <p>UNDER Ediciones es una editorial independiente nacida en La Matanza, corazón del Conurbano Oeste bonaerense. Surge de la convicción de que las experiences, saberes, historias y producciones culturales que nacen en los barrios merecen ser documentadas y preservadas.</p>
         <p>Nuestro catálogo está dedicado a activistas, músicos, gestores culturales e investigadores del hip-hop y las músicas urbanas. Creemos que estos movimientos han generado un patrimonio cultural invaluable que debe trascender los escenarios para encontrar un lugar en los libros.</p>
     </section>
 
@@ -357,7 +361,7 @@
                 <div class="book-info">
                     <h3>La Matanza, Nacional</h3>
                     <span>Pinta Ruido</span>
-                    <a href="#" class="btn-read">Leer Edición Digital</a>
+                    <a href="https://www.academia.edu/attachments/133108164/download_file" class="btn-read">Leer Edición Digital</a>
                 </div>
             </article>
 
