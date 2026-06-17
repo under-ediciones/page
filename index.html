@@ -13,38 +13,29 @@
 
     <style>
         /* REGISTRO DE FUENTE LOCAL URBANA DESDE TU CARPETA FONTS */
-        @font-face {
-            font-family: 'Freedom Street';
-            src: url('fonts/freedom-street.otf') format('opentype');
-            font-weight: normal;
-            font-style: normal;
-        }
+     @font-face {
+    font-family: 'Urban Jungle';
+    src: url('fonts/urban-jungle.otf') format('opentype');
+    font-weight: normal;
+    font-style: normal;
+}
 
-        :root {
-            --carbon: #000000; /* Negro absoluto */
-            --ocre: #c59400;
-            --ocre-light: #e6b014;
-            --papel: #f4f1ea;
-            --gris-suave: #e2e2e2;
-            --font-main: 'Inter', sans-serif;
-            --font-titles: 'Space Grotesk', sans-serif;
-            --font-book: 'Lora', serif;
-            
-            /* FUENTE GRAFFITI ASIGNADA A FREEDOM STREET */
-            --font-graffiti: 'Freedom Street', sans-serif;
-            
-            --transicion-lenta: all 0.9s cubic-bezier(0.23, 1, 0.32, 1);
-        }
+:root {
+    --carbon: #000000; /* Negro absoluto */
+    --ocre: #c59400;
+    --ocre-light: #e6b014;
+    --papel: #f4f1ea;
+    --gris-suave: #e2e2e2;
+    --font-main: 'Inter', sans-serif;
+    --font-titles: 'Space Grotesk', sans-serif;
+    --font-book: 'Lora', serif;
+    
+    /* FUENTE GRAFFITI ASIGNADA A URBAN JUNGLE */
+    --font-graffiti: 'Urban Jungle', sans-serif;
+    
+    --transicion-lenta: all 0.9s cubic-bezier(0.23, 1, 0.32, 1);
+}
 
-        * { margin: 0; padding: 0; box-sizing: border-box; scroll-behavior: smooth; }
-
-        body {
-            background-color: var(--papel);
-            color: #1a1a1a;
-            font-family: var(--font-main);
-            line-height: 1.6;
-            overflow-x: hidden;
-        }
 
         /* NAVEGACIÓN */
         nav {
